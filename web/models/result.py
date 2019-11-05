@@ -18,4 +18,3 @@ class ResultModel(db.Model):
     ms_99th_pctl = db.Column(db.Numeric, nullable=False)
 
     device_id = db.Column(db.Integer, db.ForeignKey("devices.id"), nullable=False)
-    device = db.relationship("DeviceModel", backref=db.backref('results', lazy=True))
