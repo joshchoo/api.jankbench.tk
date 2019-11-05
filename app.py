@@ -1,4 +1,4 @@
-from .db import db
+from db import db
 from flask import Flask
 from flask_restful import Api
 
