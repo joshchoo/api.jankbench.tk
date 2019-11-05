@@ -7,6 +7,7 @@ class DeviceModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     benchmark_version = db.Column(db.String(10), nullable=False)
+    device_name = db.Column(db.String(80), nullable=False)
     device_model = db.Column(db.String(80), nullable=False)
     device_product = db.Column(db.String(80), nullable=False)
     device_board = db.Column(db.String(80), nullable=False)
