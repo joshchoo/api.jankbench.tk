@@ -1,3 +1,4 @@
+import datetime
 from db import db
 
 
@@ -17,3 +18,12 @@ class DeviceModel(db.Model):
     build_time = db.Column(db.String(80), nullable=False)
     fingerprint = db.Column(db.String(120), nullable=False)
     kernel_version = db.Column(db.String(200))
+    timestamp = db.Column(
+        db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow
+    )
+    results = db.relationship(
+        "ResultModel",
+        backref=db.backref("device", lazy=True),
+        cascade="all, delete, delete-orphan",
+        single_parent=True,
+    )
