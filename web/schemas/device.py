@@ -5,7 +5,7 @@ from models.result import ResultModel  # DO NOT REMOVE
 
 
 class DeviceSchema(ma.ModelSchema):
-    results = ma.Nested('ResultSchema', many=True, exclude=('device',))
+    results = ma.Nested("ResultSchema", many=True, exclude=("device",))
 
     class Meta:
         model = DeviceModel
