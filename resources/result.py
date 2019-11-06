@@ -29,7 +29,9 @@ class DeviceResults(Resource):
     @classmethod
     def get(cls, model):
         result_list_schema = ResultSchema(many=True)
-        device_results = ResultModel.query.join(DeviceModel).filter_by(device_model=model).all()
+        device_results = (
+            ResultModel.query.join(DeviceModel).filter_by(device_model=model).all()
+        )
         response = result_list_schema.dump(device_results)
 
         if not response:
