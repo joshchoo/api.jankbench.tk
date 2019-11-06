@@ -12,6 +12,7 @@ marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 flask-restful = "*"
 flask-sqlalchemy = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.6"
