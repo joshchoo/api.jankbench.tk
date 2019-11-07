@@ -9,7 +9,7 @@ class DeviceSchema(ma.ModelSchema):
 
     class Meta:
         model = DeviceModel
-        dump_only = ("id",)
+        exclude = ("id",)
 
     @validates("results")
     def validate_results(self, results):
