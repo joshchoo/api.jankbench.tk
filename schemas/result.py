@@ -9,7 +9,7 @@ class ResultSchema(ma.ModelSchema):
 
     class Meta:
         model = ResultModel
-        dump_only = ("id", "device_id")
+        exclude = ("id", "device_id")
         include_fk = True
 
     @validates("test_name")
