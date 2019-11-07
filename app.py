@@ -1,5 +1,6 @@
 from db import db
 from flask import Flask, jsonify
+from flask_migrate import Migrate
 from flask_restful import Api
 from ma import ma
 from marshmallow import ValidationError
@@ -20,6 +21,7 @@ api.add_resource(DeviceResults, "/api/v1/results/<string:model>")
 
 db.init_app(app)
 ma.init_app(app)
+migrate = Migrate(app, db)
 
 
 @app.before_first_request
