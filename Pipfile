@@ -13,6 +13,7 @@ marshmallow-sqlalchemy = "*"
 flask-restful = "*"
 flask-sqlalchemy = "*"
 gunicorn = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.6"
