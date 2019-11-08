@@ -27,7 +27,7 @@ def results():
         db.session.add(result)
         db.session.commit()
 
-        return jsonify({"result": "Results uploaded successfully."}), 201
+        return jsonify({"message": "Results uploaded successfully."}), 201
 
 
 @bp.route('/results/<model>', methods=['GET'])
@@ -39,6 +39,6 @@ def results_model(model: str):
     response = result_list_schema.dump(device_results)
 
     if not response:
-        return jsonify({"results": f"No results for {model}."}), 400
+        return jsonify({"message": f"No results for {model}."}), 400
 
     return jsonify({"results": response}), 200
