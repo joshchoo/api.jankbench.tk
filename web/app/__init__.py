@@ -14,7 +14,7 @@ migrate = Migrate()
 def create_app():
     # Initialize core app
     connex_app = connexion.App(__name__, specification_dir='.')
-    connex_app.add_api('swagger.yaml')
+    connex_app.add_api('swagger.yaml', strict_validation=True, validate_responses=True)
     app = connex_app.app
     app.config.from_object(Config())
 
