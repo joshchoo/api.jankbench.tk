@@ -1,8 +1,9 @@
 from config import Config
-from flask import Flask
 from flask_migrate import Migrate
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
+
+import connexion
 
 # Globally accessible libraries
 db = SQLAlchemy()
@@ -12,7 +13,9 @@ migrate = Migrate()
 
 def create_app():
     # Initialize core app
-    app = Flask(__name__)
+    connex_app = connexion.App(__name__, specification_dir='.')
+    connex_app.add_api('swagger.yaml')
+    app = connex_app.app
     app.config.from_object(Config())
 
     # Initialize extensions
