@@ -1,0 +1,296 @@
+swagger: '2.0'
+info:
+  title: JankBench API
+  version: "0.1"
+  description: Store and retrieve benchmark results
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api/v1
+
+paths:
+  /devices:
+    get:
+      operationId: app.routes.devices
+      summary: Get all devices
+      description: Read the list of devices
+      responses:
+        200:
+          description: Successfully returned list of devices.
+          schema:
+            type: object
+            properties:
+              devices:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    android_version:
+                      type: string
+                    benchmark_version:
+                      type: string
+                    build_time:
+                      type: string
+                    build_type:
+                      type: string
+                    device_board:
+                      type: string
+                    device_brand:
+                      type: string
+                    device_hardware:
+                      type: string
+                    device_manufacturer:
+                      type: string
+                    device_model:
+                      type: string
+                    device_name:
+                      type: string
+                    device_product:
+                      type: string
+                    fingerprint:
+                      type: string
+                    kernel_version:
+                      type: string
+                    run_id:
+                      type: integer
+                    timestamp:
+                      type: string
+  /results:
+    get:
+      operationId: app.routes.get_results
+      summary: Get all results
+      description: Read the list of results
+      responses:
+        200:
+          description: Successfully returned list of results.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bad_frame_pct:
+                      type: number
+                    consistency_bonus:
+                      type: integer
+                    jank_pct:
+                      type: number
+                    jank_penalty:
+                      type: integer
+                    ms_90th_pctl:
+                      type: number
+                    ms_95th_pctl:
+                      type: number
+                    ms_99th_pctl:
+                      type: number
+                    ms_avg:
+                      type: number
+                    score:
+                      type: integer
+                    test_name:
+                      type: string
+                    total_frames:
+                      type: integer
+                    device:
+                      type: object
+                      properties:
+                        android_version:
+                          type: string
+                        benchmark_version:
+                          type: string
+                        build_time:
+                          type: string
+                        build_type:
+                          type: string
+                        device_board:
+                          type: string
+                        device_brand:
+                          type: string
+                        device_hardware:
+                          type: string
+                        device_manufacturer:
+                          type: string
+                        device_model:
+                          type: string
+                        device_name:
+                          type: string
+                        device_product:
+                          type: string
+                        fingerprint:
+                          type: string
+                        kernel_version:
+                          type: string
+                        run_id:
+                          type: integer
+                        timestamp:
+                          type: string
+    post:
+      operationId: app.routes.post_results
+      summary: Submit benchmark results
+      description: Submit benchmarks results
+      parameters:
+        - name: body
+          in: body
+          description: Benchmark results to submit
+          required: true
+          schema:
+            type: object
+            properties:
+              android_version:
+                type: string
+              benchmark_version:
+                type: string
+              build_time:
+                type: string
+              build_type:
+                type: string
+              device_board:
+                type: string
+              device_brand:
+                type: string
+              device_hardware:
+                type: string
+              device_manufacturer:
+                type: string
+              device_model:
+                type: string
+              device_name:
+                type: string
+              device_product:
+                type: string
+              fingerprint:
+                type: string
+              kernel_version:
+                type: string
+              run_id:
+                type: integer
+              results:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bad_frame_pct:
+                      type: number
+                    consistency_bonus:
+                      type: integer
+                    jank_pct:
+                      type: number
+                    jank_penalty:
+                      type: integer
+                    ms_90th_pctl:
+                      type: number
+                    ms_95th_pctl:
+                      type: number
+                    ms_99th_pctl:
+                      type: number
+                    ms_avg:
+                      type: number
+                    score:
+                      type: integer
+                    test_name:
+                      type: string
+                    total_frames:
+                      type: integer
+      responses:
+        201:
+          description: Results uploaded successfully.
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Invalid or missing parameters.
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /results/{model}:
+    get:
+      operationId: app.routes.results_model
+      summary: Get results for a device model
+      description: Read the list of results
+      parameters:
+        - name: model
+          in: path
+          description: Device model name to get
+          type: string
+          required: true
+      responses:
+        200:
+          description: Successfully returned list of results for the device.
+          schema:
+            type: object
+            properties:
+              results:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bad_frame_pct:
+                      type: number
+                    consistency_bonus:
+                      type: integer
+                    jank_pct:
+                      type: number
+                    jank_penalty:
+                      type: integer
+                    ms_90th_pctl:
+                      type: number
+                    ms_95th_pctl:
+                      type: number
+                    ms_99th_pctl:
+                      type: number
+                    ms_avg:
+                      type: number
+                    score:
+                      type: integer
+                    test_name:
+                      type: string
+                    total_frames:
+                      type: integer
+                    device:
+                      type: object
+                      properties:
+                        android_version:
+                          type: string
+                        benchmark_version:
+                          type: string
+                        build_time:
+                          type: string
+                        build_type:
+                          type: string
+                        device_board:
+                          type: string
+                        device_brand:
+                          type: string
+                        device_hardware:
+                          type: string
+                        device_manufacturer:
+                          type: string
+                        device_model:
+                          type: string
+                        device_name:
+                          type: string
+                        device_product:
+                          type: string
+                        fingerprint:
+                          type: string
+                        kernel_version:
+                          type: string
+                        run_id:
+                          type: integer
+                        timestamp:
+                          type: string
+        400:
+          description: No results for device.
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
