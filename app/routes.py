@@ -13,21 +13,22 @@ def devices():
     return jsonify({"devices": devices_list}), 200
 
 
-@bp.route('/results', methods=['GET', 'POST'])
-def results():
-    if request.method == 'GET':
-        result_list_schema = ResultSchema(many=True)
-        results_list = result_list_schema.dump(ResultModel.query.all())
-        return jsonify({"results": results_list}), 200
+@bp.route('/results', methods=['GET'])
+def get_results():
+    result_list_schema = ResultSchema(many=True)
+    results_list = result_list_schema.dump(ResultModel.query.all())
+    return jsonify({"results": results_list}), 200
 
-    elif request.method == 'POST':
-        data = request.get_json()
-        device_schema = DeviceSchema()
-        result = device_schema.load(data)
-        db.session.add(result)
-        db.session.commit()
 
-        return jsonify({"message": "Results uploaded successfully."}), 201
+@bp.route('/results', methods=['POST'])
+def post_results():
+    data = request.get_json()
+    device_schema = DeviceSchema()
+    result = device_schema.load(data)
+    db.session.add(result)
+    db.session.commit()
+
+    return jsonify({"message": "Results uploaded successfully."}), 201
 
 
 @bp.route('/results/<model>', methods=['GET'])
