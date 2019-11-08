@@ -1,4 +1,3 @@
-from app import db
 from app.errors import bp
 from flask import jsonify
 from marshmallow import ValidationError
