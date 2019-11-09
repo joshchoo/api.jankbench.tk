@@ -3,24 +3,24 @@ from . import db
 from .models import DeviceModel, ResultModel
 from .schemas import DeviceSchema, ResultSchema
 
-bp = Blueprint('routes', __name__)
+bp = Blueprint("routes", __name__)
 
 
-@bp.route('/devices', methods=['GET'])
+@bp.route("/devices", methods=["GET"])
 def devices():
     device_list_schema = DeviceSchema(many=True, exclude=("results",))
     devices_list = device_list_schema.dump(DeviceModel.query.all())
     return jsonify({"devices": devices_list}), 200
 
 
-@bp.route('/results', methods=['GET'])
+@bp.route("/results", methods=["GET"])
 def get_results():
     result_list_schema = ResultSchema(many=True)
     results_list = result_list_schema.dump(ResultModel.query.all())
     return jsonify({"results": results_list}), 200
 
 
-@bp.route('/results', methods=['POST'])
+@bp.route("/results", methods=["POST"])
 def post_results():
     data = request.get_json()
     device_schema = DeviceSchema()
@@ -31,7 +31,7 @@ def post_results():
     return jsonify({"message": "Results uploaded successfully."}), 201
 
 
-@bp.route('/results/<model>', methods=['GET'])
+@bp.route("/results/<model>", methods=["GET"])
 def results_model(model: str):
     result_list_schema = ResultSchema(many=True)
     device_results = (
