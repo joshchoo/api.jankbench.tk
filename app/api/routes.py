@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
-from . import db
-from .models import DeviceModel, ResultModel
-from .schemas import DeviceSchema, ResultSchema
+from app import db
+from app.models import DeviceModel, ResultModel
+from app.schemas import DeviceSchema, ResultSchema
 
 bp = Blueprint("routes", __name__)
 

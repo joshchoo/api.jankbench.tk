@@ -8,7 +8,7 @@ servers:
 paths:
   /devices:
     get:
-      operationId: app.routes.devices
+      operationId: app.api.routes.devices
       summary: Get all devices
       description: Read the list of devices
       responses:
@@ -57,7 +57,7 @@ paths:
                           type: string
   /results:
     get:
-      operationId: app.routes.get_results
+      operationId: app.api.routes.get_results
       summary: Get all results
       description: Read the list of results
       responses:
@@ -130,7 +130,7 @@ paths:
                             timestamp:
                               type: string
     post:
-      operationId: app.routes.post_results
+      operationId: app.api.routes.post_results
       summary: Submit benchmark results
       description: Submit benchmarks results
       requestBody:
@@ -218,7 +218,7 @@ paths:
                     type: string
   "/results/{model}":
     get:
-      operationId: app.routes.results_model
+      operationId: app.api.routes.results_model
       summary: Get results for a device model
       description: Read the list of results
       parameters:
