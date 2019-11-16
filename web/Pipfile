@@ -15,6 +15,7 @@ gunicorn = "*"
 psycopg2 = "*"
 flask-migrate = "*"
 connexion = {extras = ["swagger-ui"],version = "*"}
+pytest = "*"
 
 [requires]
 python_version = "3.6"
