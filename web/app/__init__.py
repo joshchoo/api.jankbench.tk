@@ -1,4 +1,3 @@
-from config import Config
 from flask_migrate import Migrate
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
@@ -11,12 +10,15 @@ ma = Marshmallow()
 migrate = Migrate()
 
 
-def create_app():
+def create_app(config_name=None):
     # Initialize core app
     connex_app = connexion.App(__name__, specification_dir=".")
     connex_app.add_api("swagger.yaml", strict_validation=True, validate_responses=True)
     app = connex_app.app
-    app.config.from_object(Config())
+    app.config.from_object('config.DefaultConfig')
+    # Overwrite config values
+    if config_name:
+        app.config.from_object('config.' + config_name)
 
     # Initialize extensions
     db.init_app(app)
