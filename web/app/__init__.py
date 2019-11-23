@@ -34,8 +34,4 @@ def create_app(config_name=None):
 
     app.register_blueprint(errors_bp)
 
-    with app.app_context():
-        # Create tables
-        db.create_all()
-
     return app
