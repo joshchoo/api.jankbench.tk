@@ -15,10 +15,10 @@ def create_app(config_name=None):
     connex_app = connexion.App(__name__, specification_dir=".")
     connex_app.add_api("swagger.yaml", strict_validation=True, validate_responses=True)
     app = connex_app.app
-    app.config.from_object('config.DefaultConfig')
+    app.config.from_object("config.DefaultConfig")
     # Overwrite config values
     if config_name:
-        app.config.from_object('config.' + config_name)
+        app.config.from_object("config." + config_name)
 
     # Initialize extensions
     db.init_app(app)
