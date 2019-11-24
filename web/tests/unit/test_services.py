@@ -45,8 +45,9 @@ def test_device_create(db: SQLAlchemy):
     # WHEN user requests for all devices
     devices: List[DeviceModel] = DeviceService.get_all()
 
-    # THEN 1 device should be returned
+    # THEN 1 correct device should be returned
     assert len(devices) == 1
+    assert device in devices
 
 
 def test_device_get_all(db: SQLAlchemy):
@@ -137,8 +138,9 @@ def test_device_get_all(db: SQLAlchemy):
     # WHEN user requests for all devices
     devices: List[DeviceModel] = DeviceService.get_all()
 
-    # THEN 2 devices should be returned
+    # THEN 2 correct devices should be returned
     assert len(devices) == 2
+    assert {oneplus5, oneplus6} == set(devices)
 
 
 def test_result_get_all(db: SQLAlchemy):
@@ -229,8 +231,10 @@ def test_result_get_all(db: SQLAlchemy):
     # WHEN user requests for all test results
     results: List[ResultModel] = ResultService.get_all()
 
-    # THEN 3 test results should be returned
+    # THEN 3 correct test results should be returned
     assert len(results) == 3
+    for res in oneplus5.results + oneplus6.results:
+        assert res in results
 
 
 def test_result_get_by_model(db: SQLAlchemy):
@@ -355,5 +359,7 @@ def test_result_get_by_model(db: SQLAlchemy):
     # WHEN user requests for all test results for ONEPLUS A6013
     results: List[ResultModel] = ResultService.get_by_model("ONEPLUS A6013")
 
-    # THEN 3 results should be returned
+    # THEN 3 correct test results should be returned
     assert len(results) == 3
+    for res in oneplus6_a.results + oneplus6_b.results:
+        assert res in results
