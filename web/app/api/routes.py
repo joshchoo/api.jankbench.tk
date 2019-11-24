@@ -8,7 +8,7 @@ bp = Blueprint("routes", __name__)
 
 
 @bp.route("/devices", methods=["GET"])
-def devices():
+def get_devices():
     device_list_schema = DeviceSchema(many=True, exclude=("results",))
     devices_list = device_list_schema.dump(DeviceService.get_all())
     return jsonify({"devices": devices_list}), 200
@@ -32,7 +32,7 @@ def post_results():
 
 
 @bp.route("/results/<string:model>", methods=["GET"])
-def results_model(model: str):
+def get_results_for_model(model: str):
     result_list_schema = ResultSchema(many=True)
     device_results: List[ResultModel] = ResultService.get_by_model(model)
     response = result_list_schema.dump(device_results)

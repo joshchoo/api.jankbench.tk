@@ -8,7 +8,7 @@ servers:
 paths:
   /devices:
     get:
-      operationId: app.api.routes.devices
+      operationId: app.api.routes.get_devices
       summary: Get all devices
       description: Read the list of devices
       responses:
@@ -218,7 +218,7 @@ paths:
                     type: string
   "/results/{model}":
     get:
-      operationId: app.api.routes.results_model
+      operationId: app.api.routes.get_results_for_model
       summary: Get results for a device model
       description: Read the list of results
       parameters:
