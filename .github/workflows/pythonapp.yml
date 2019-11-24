@@ -1,0 +1,25 @@
+name: Python application
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.6
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.6
+    - name: Install dependencies
+      run: |
+        cd web
+        sudo apt install libpq-dev  # needed to install psycopg2
+        python -m pip install --upgrade pip
+        pip install --no-cache-dir pipenv
+        pipenv install --system --deploy
+    - name: Test with pytest
+      run: |
+        pipenv run pytest
