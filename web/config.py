@@ -16,5 +16,5 @@ class TestingConfig:
     DEBUG = True
     TESTING = True
     SQLALCHEMY_DATABASE_URI = os.environ.get(
-        "DATABASE_URL", "sqlite:///" + os.path.join(basedir, "testing.db")
+        "TESTING_DATABASE_URL", "sqlite:///" + os.path.join(basedir, "testing.db")
     )
