@@ -4,7 +4,7 @@ from .models import DeviceModel, ResultModel
 
 
 class DeviceSchema(ma.ModelSchema):
-    results = ma.Nested("ResultSchema", many=True, exclude=("device",))
+    results = ma.Nested("ResultSchema", many=True, exclude=("device",), required=True)
 
     class Meta:
         model = DeviceModel
