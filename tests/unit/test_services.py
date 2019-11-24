@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from typing import List
 from app.models import DeviceModel, ResultModel
-from app.schemas import DeviceSchema, ResultSchema
+from app.schemas import DeviceSchema
 from app.services import DeviceService, ResultService
 
 
