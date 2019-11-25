@@ -28,7 +28,7 @@ def create_app(config_name=None):
     # Register Blueprints
     from app.api.routes import bp as routes_bp
 
-    app.register_blueprint(routes_bp, url_prefix="/api/v1")
+    app.register_blueprint(routes_bp, url_prefix="/v1")
 
     from app.errors import bp as errors_bp
 
