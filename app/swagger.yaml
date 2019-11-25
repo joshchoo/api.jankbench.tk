@@ -4,7 +4,7 @@ info:
   version: "0.1"
   description: Store and retrieve benchmark results
 servers:
-  - url: /api/v1
+  - url: /v1
 paths:
   /devices:
     get:
