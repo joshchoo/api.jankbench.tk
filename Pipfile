@@ -16,6 +16,7 @@ psycopg2 = "*"
 flask-migrate = "*"
 connexion = {extras = ["swagger-ui"],version = "*"}
 pytest = "*"
+flask-cors = "*"
 
 [requires]
 python_version = "3.6"
