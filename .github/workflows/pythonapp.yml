@@ -17,6 +17,7 @@ jobs:
       run: |
         cd web
         sudo apt install libpq-dev  # needed to install psycopg2
+        sudo apt install redis-server
         python -m pip install --upgrade pip
         pip install --no-cache-dir pipenv
         pipenv install --system --deploy
