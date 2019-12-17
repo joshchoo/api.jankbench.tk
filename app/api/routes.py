@@ -1,13 +1,17 @@
+from typing import List
+
 from flask import Blueprint, jsonify, request
+
+from app import cache
 from app.models import DeviceModel, ResultModel
 from app.schemas import DeviceSchema, ResultSchema
 from app.services import DeviceService, ResultService
-from typing import List
 
 bp = Blueprint("routes", __name__)
 
 
 @bp.route("/devices", methods=["GET"])
+@cache.memoize(50)
 def get_devices():
     device_list_schema = DeviceSchema(many=True, exclude=("results",))
     devices_list = device_list_schema.dump(DeviceService.get_all())
@@ -15,6 +19,7 @@ def get_devices():
 
 
 @bp.route("/results", methods=["GET"])
+@cache.memoize(50)
 def get_results():
     result_list_schema = ResultSchema(many=True)
     results_list = result_list_schema.dump(ResultService.get_all())
@@ -32,6 +37,7 @@ def post_results():
 
 
 @bp.route("/results/<string:model>", methods=["GET"])
+@cache.memoize(50)
 def get_results_for_model(model: str):
     result_list_schema = ResultSchema(many=True)
     device_results: List[ResultModel] = ResultService.get_by_model(model)

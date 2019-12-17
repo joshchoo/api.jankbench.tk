@@ -1,3 +1,4 @@
+from flask_caching import Cache
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_marshmallow import Marshmallow
@@ -10,6 +11,7 @@ db = SQLAlchemy()
 ma = Marshmallow()
 migrate = Migrate()
 cors = CORS()
+cache = Cache(config={'CACHE_TYPE': 'redis'})
 
 
 def create_app(config_name=None):
@@ -27,6 +29,7 @@ def create_app(config_name=None):
     ma.init_app(app)
     migrate.init_app(app, db)
     cors.init_app(app)
+    cache.init_app(app)
 
     # Register Blueprints
     from app.api.routes import bp as routes_bp
