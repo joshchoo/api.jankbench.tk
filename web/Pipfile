@@ -17,6 +17,8 @@ flask-migrate = "*"
 connexion = {extras = ["swagger-ui"],version = "*"}
 pytest = "*"
 flask-cors = "*"
+flask-caching = "*"
+redis = "*"
 
 [requires]
 python_version = "3"
