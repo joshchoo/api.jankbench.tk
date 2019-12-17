@@ -3,15 +3,16 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
-
 import connexion
+
+from config import cache_config
 
 # Globally accessible libraries
 db = SQLAlchemy()
 ma = Marshmallow()
 migrate = Migrate()
 cors = CORS()
-cache = Cache(config={'CACHE_TYPE': 'redis'})
+cache = Cache(config=cache_config)
 
 
 def create_app(config_name=None):

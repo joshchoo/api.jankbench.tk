@@ -18,3 +18,9 @@ class TestingConfig:
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         "TESTING_DATABASE_URL", "sqlite:///" + os.path.join(basedir, "testing.db")
     )
+
+
+cache_config = {
+    "CACHE_TYPE": os.environ.get("CACHE_TYPE", "redis"),
+    "CACHE_REDIS_URL": os.environ.get("REDIS_URL", "redis://localhost:6379"),
+}
