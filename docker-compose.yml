@@ -9,5 +9,9 @@ services:
       - REDIS_URL=redis://redis_cache:6379
     depends_on:
       - redis_cache
+    restart_policy:
+      condition: any
   redis_cache:
     image: 'redis:5-alpine'
+    restart_policy:
+      condition: any
